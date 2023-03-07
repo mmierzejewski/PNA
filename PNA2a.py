@@ -23,5 +23,6 @@ print('The highest prime number in that range to', m, 'is', max(pna(m)))
 t3 = datetime.now()
 tht = t3 - t2
 print('The highest time:', tht)
+print('Stop:', t3)
 a = t3 - t1
 print('Time of counting everything:', a)
