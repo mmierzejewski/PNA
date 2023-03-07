@@ -12,7 +12,7 @@ def pna(n):
     return [x for x in range(n + 1) if primes[x]]
 
 
-m = 1000000000
+m = 300000000
 t1 = datetime.now()
 print('Start:', t1)
 print('Amount of prime numbers in range from 2 to', m, ':', len(pna(m)))
