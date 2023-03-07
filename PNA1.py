@@ -1,27 +1,36 @@
-# Prime numbers algorithm (by openai)
+# Prime numbers algorithm
+import time
 from datetime import datetime
 
-t1 = datetime.now()
-print('Start:', t1)
+t1 = time.time()
+t1a = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+print("Start", t1a)
 
-def pna(n):
-    primes = [True] * (n + 1)
-    primes[0] = primes[1] = False
-    for i in range(2, int(n ** 0.5) + 1):
-        if primes[i]:
-            for j in range(i * i, n + 1, i):
-                primes[j] = False
-    return [x for x in range(n + 1) if primes[x]]
+primary = []
 
-m = 100000000
-# pna(m)
-print("Amount of prime numbers in range from 2 to", m, ":", len(pna(m)))
-t2 = datetime.now()
-print('Time 2:', t2)
-a = t2 - t1
-print("Time of counting 'Amount of prime numbers':", a)
-print("The highest prime number in that range to", m, "is", max(pna(m)))
-t3 = datetime.now()
-print('Stop:', t3)
-b = t3 - t1
-print("Time of counting everything:", b)
+
+def if_primary(number):
+    for factor in primary:
+        if number % factor == 0:
+            return False
+        if factor * factor > number:
+            return True
+    return True
+
+
+def mark_primary(number):
+    for i in range(2, number):
+        if if_primary(i) is True:
+            primary.append(i)
+    return
+
+
+m = 1000000000
+mark_primary(m)
+# print(primary)
+t2 = time.time()
+t2a = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+print("Stop", t2a)
+print("Amount of prime numbers in range from 2 to", m, ":", (len(primary)))
+print("The highest prime number in that range is", (max(primary)))
+print("Time of counting:", round(t2 - t1, 2), "sec")
